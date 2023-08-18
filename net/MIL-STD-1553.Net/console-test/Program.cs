@@ -32,14 +32,26 @@ namespace console_test
 
         static void Main(string[] args)
         {
-            ushort[] data = new ushort[32];
-            int errorCode = GetDataFromRT(0, 0, 0, data, 32);
+            int errorCode;
 
-            IntPtr errorPtr = DecodeError(errorCode);
-            string error = Marshal.PtrToStringAnsi(errorPtr);
+            errorCode = Initialize(0);
+            PrintError("Initialize", errorCode);
 
-            Console.WriteLine(error);
+            ushort[] data = new ushort[0x20];
+            errorCode = GetDataFromRT(0x80, 0x1C, 0x01, data, (byte)data.Length);
+            PrintError("GetDataFromRT", errorCode);
+
+            errorCode = Close();
+            PrintError("Close", errorCode);
             Console.ReadKey();
+        }
+
+        private static void PrintError(string operationName, int errorCode)
+        {
+            IntPtr errorPtr = DecodeError(errorCode);
+            string errorDescription = Marshal.PtrToStringAnsi(errorPtr);
+
+            Console.WriteLine($"{operationName} error:{errorCode:X4} description:{errorDescription}");
         }
     }
 }

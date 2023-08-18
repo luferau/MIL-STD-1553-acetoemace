@@ -96,60 +96,6 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <AdditionalIncludeDirectories>..\..\..\..\libraries\acetoemace\src;..\..\..\..\libraries\emacepl\src;..\..\..\..\drivers\acex\src\;</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeaderOutputFile>$(OutDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>$(OutDir)</AssemblerListingLocation>
-      <ObjectFileName>$(OutDir)</ObjectFileName>
-      <ProgramDataBaseFileName>$(OutDir)</ProgramDataBaseFileName>
-      <WarningLevel>Level3</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <StructMemberAlignment>1Byte</StructMemberAlignment>
-    </ClCompile>
-    <ResourceCompile>
-      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-    </ResourceCompile>
-    <PreLinkEvent>
-      <Command>echo Copying "DDC MIL-STD-1553 ACE Library" next to executable...
-if exist "..\..\Prj\AceLib\$(Platform)\$(Configuration)" copy "..\..\Prj\AceLib\$(Platform)\$(Configuration)\Ace4.lib" $(OutDir)
-if exist "..\..\Prj\AceLib\$(Platform)\$(Configuration)" copy "..\..\Prj\AceLib\$(Platform)\$(Configuration)\Ace4.dll" $(OutDir)
-
-if exist "..\..\AceLib\$(Platform)\$(Configuration)" copy "..\..\AceLib\$(Platform)\$(Configuration)\Ace4.lib" $(OutDir)
-if exist "..\..\AceLib\$(Platform)\$(Configuration)" copy "..\..\AceLib\$(Platform)\$(Configuration)\Ace4.dll" $(OutDir)</Command>
-      <Message>Library Copy</Message>
-    </PreLinkEvent>
-    <Link>
-      <AdditionalDependencies>Ace4.lib</AdditionalDependencies>
-      <OutputFile>$(OutDir)$(TargetName).exe</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
-      <SubSystem>Console</SubSystem>
-      <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalLibraryDirectories>..\..\..\..\libraries\acetoemace\bin\$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
-    </Link>
-    <Bscmake>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>$(OutDir)$(TargetName).bsc</OutputFile>
-    </Bscmake>
-    <PostBuildEvent>
-      <Command>echo Copying executable to bin directory
-xcopy /Y /R "..\..\obj\$(Platform)\$(Configuration)\$(ProjectName)\*.exe" "..\..\bin\$(Platform)\$(Configuration)\"</Command>
-    </PostBuildEvent>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <Midl>
-      <TargetEnvironment>X64</TargetEnvironment>
-      <TypeLibraryName>$(OutDir)$(TargetName).tlb</TypeLibraryName>
-      <HeaderFileName>
-      </HeaderFileName>
-    </Midl>
-    <ClCompile>
-      <Optimization>MaxSpeed</Optimization>
-      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <AdditionalIncludeDirectories>..\..\..\libraries\acetoemace\src;..\..\..\libraries\emacepl\src;..\..\..\drivers\acex\src\</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
@@ -182,8 +128,8 @@ if exist "..\..\AceLib\$(Platform)\$(Configuration)" copy "..\..\AceLib\$(Platfo
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
       <SubSystem>Console</SubSystem>
-      <TargetMachine>MachineX64</TargetMachine>
-      <AdditionalLibraryDirectories>..\..\..\libraries\acetoemace\bin\$(Platform)\$(Configuration);</AdditionalLibraryDirectories>
+      <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalLibraryDirectories>..\..\..\libraries\acetoemace\bin\$(Platform)\Release</AdditionalLibraryDirectories>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -194,29 +140,31 @@ if exist "..\..\AceLib\$(Platform)\$(Configuration)" copy "..\..\AceLib\$(Platfo
 xcopy /Y /R "..\..\obj\$(Platform)\$(Configuration)\$(ProjectName)\*.exe" "..\..\bin\$(Platform)\$(Configuration)\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
       <TypeLibraryName>$(OutDir)$(TargetName).tlb</TypeLibraryName>
       <HeaderFileName>
       </HeaderFileName>
     </Midl>
     <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\..\..\libraries\acetoemace\src;..\..\..\..\libraries\emacepl\src;..\..\..\..\drivers\acex\src\;</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <AdditionalIncludeDirectories>..\..\..\libraries\acetoemace\src;..\..\..\libraries\emacepl\src;..\..\..\drivers\acex\src\</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeaderOutputFile>$(OutDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>$(OutDir)</AssemblerListingLocation>
       <ObjectFileName>$(OutDir)</ObjectFileName>
       <ProgramDataBaseFileName>$(OutDir)</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <StructMemberAlignment>1Byte</StructMemberAlignment>
+      <StructMemberAlignment>8Bytes</StructMemberAlignment>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
     </ResourceCompile>
     <PreLinkEvent>
@@ -232,11 +180,10 @@ if exist "..\..\AceLib\$(Platform)\$(Configuration)" copy "..\..\AceLib\$(Platfo
       <AdditionalDependencies>Ace4.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName).exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
       <SubSystem>Console</SubSystem>
-      <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalLibraryDirectories>..\..\..\..\libraries\acetoemace\bin\$(Platform)\$(Configuration);..\..\..\..\libraries\acetoemace\bin\$(Platform)\Release</AdditionalLibraryDirectories>
+      <TargetMachine>MachineX64</TargetMachine>
+      <AdditionalLibraryDirectories>..\..\..\libraries\acetoemace\bin\$(Platform)\Release</AdditionalLibraryDirectories>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -247,9 +194,8 @@ if exist "..\..\AceLib\$(Platform)\$(Configuration)" copy "..\..\AceLib\$(Platfo
 xcopy /Y /R "..\..\obj\$(Platform)\$(Configuration)\$(ProjectName)\*.exe" "..\..\bin\$(Platform)\$(Configuration)\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Midl>
-      <TargetEnvironment>X64</TargetEnvironment>
       <TypeLibraryName>$(OutDir)$(TargetName).tlb</TypeLibraryName>
       <HeaderFileName>
       </HeaderFileName>
@@ -289,8 +235,62 @@ if exist "..\..\AceLib\$(Platform)\$(Configuration)" copy "..\..\AceLib\$(Platfo
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
       <SubSystem>Console</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalLibraryDirectories>..\..\..\libraries\acetoemace\bin\$(Platform)\Release</AdditionalLibraryDirectories>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>$(OutDir)$(TargetName).bsc</OutputFile>
+    </Bscmake>
+    <PostBuildEvent>
+      <Command>echo Copying executable to bin directory
+xcopy /Y /R "..\..\obj\$(Platform)\$(Configuration)\$(ProjectName)\*.exe" "..\..\bin\$(Platform)\$(Configuration)\"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+      <TypeLibraryName>$(OutDir)$(TargetName).tlb</TypeLibraryName>
+      <HeaderFileName>
+      </HeaderFileName>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\..\libraries\acetoemace\src;..\..\..\libraries\emacepl\src;..\..\..\drivers\acex\src\</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeaderOutputFile>$(OutDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>$(OutDir)</AssemblerListingLocation>
+      <ObjectFileName>$(OutDir)</ObjectFileName>
+      <ProgramDataBaseFileName>$(OutDir)</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <StructMemberAlignment>8Bytes</StructMemberAlignment>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <PreLinkEvent>
+      <Command>echo Copying "DDC MIL-STD-1553 ACE Library" next to executable...
+if exist "..\..\Prj\AceLib\$(Platform)\$(Configuration)" copy "..\..\Prj\AceLib\$(Platform)\$(Configuration)\Ace4.lib" $(OutDir)
+if exist "..\..\Prj\AceLib\$(Platform)\$(Configuration)" copy "..\..\Prj\AceLib\$(Platform)\$(Configuration)\Ace4.dll" $(OutDir)
+
+if exist "..\..\AceLib\$(Platform)\$(Configuration)" copy "..\..\AceLib\$(Platform)\$(Configuration)\Ace4.lib" $(OutDir)
+if exist "..\..\AceLib\$(Platform)\$(Configuration)" copy "..\..\AceLib\$(Platform)\$(Configuration)\Ace4.dll" $(OutDir)</Command>
+      <Message>Library Copy</Message>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>Ace4.lib</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName).exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(OutDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX64</TargetMachine>
-      <AdditionalLibraryDirectories>..\..\..\libraries\acetoemace\bin\$(Platform)\$(Configuration);..\..\..\..\libraries\acetoemace\bin\$(Platform)\Release</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\..\libraries\acetoemace\bin\$(Platform)\Release</AdditionalLibraryDirectories>
     </Link>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>

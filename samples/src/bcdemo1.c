@@ -35,10 +35,10 @@ int main (void)
   BuConf_t  Conf; /* ACE library configuration type */
   BuError_t Err;  /* ACE library error status type  */
 
-  U16BIT data[32]={ 0X0000,0x1111,0x2222,0x3333,0x4444,0x5555,0x6666,0x7777,
-                    0x8888,0x9999,0xAAAA,0xBBBB,0xCCCC,0xDDDD,0xEEEE,0xFFFF,
-                    0x0001,0x0002,0x0004,0x0008,0x0010,0x0020,0x0040,0x0080,
-                    0x0100,0x0200,0x0400,0x0800,0x1000,0x2000,0x4000,0x8000};
+  U16BIT data[32]={ 0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,
+                    0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,
+                    0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,
+                    0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000 };
 #ifdef _ACELINUX
 	AceUtilsStart();  /* Start Ace Utilities */
 #endif
@@ -70,17 +70,17 @@ int main (void)
   BuBCOpen();
 
   /* send 10 words to rt 5 sa 1 on channel A */
-  Err=BuBCSendData(CW_CHANNELA,5,1,data,10);
+  //Err=BuBCSendData(CW_CHANNELA,5,1,data,10);
 
-  printf("%s\n",BuErrorStr(Err));
+  //printf("%s\n",BuErrorStr(Err));
 
   /* send 32 words to rt 6 sa 1 on channel A
      added this [01-SEP-1995] to test 32 word case */
-  Err=BuBCSendData(CW_CHANNELA,6,1,data,32);
-  printf("%s\n",BuErrorStr(Err));
+  //Err=BuBCSendData(CW_CHANNELA,6,1,data,32);
+  //printf("%s\n",BuErrorStr(Err));
 
   /* receive 5 words from rt 8 sa 4 on channel A */
-  Err=BuBCGetData(CW_CHANNELA,8,4,data,5);
+  Err=BuBCGetData(CW_CHANNELA,5,1,data, 32);
   printf("%s\n",BuErrorStr(Err));
 
   /* display data */
@@ -88,11 +88,11 @@ int main (void)
 
   /* receive 32 words from rt 7 sa 2 on channel A
      added this [01-SEP-1995] to test 32 word case */
-  Err=BuBCGetData(CW_CHANNELA,7,2,data,32);
-  printf("%s\n",BuErrorStr(Err));
+  //Err=BuBCGetData(CW_CHANNELA,7,2,data,32);
+  //printf("%s\n",BuErrorStr(Err));
 
   /* display data */
-  if(!Err){int x;for(x=0;x<32;x++)printf("%04x ",data[x]);}
+  //if(!Err){int x;for(x=0;x<32;x++)printf("%04x ",data[x]);}
 
   /* closes bus controller mode */
   BuBCClose();
